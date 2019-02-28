@@ -1,6 +1,9 @@
 /*
 Package wechat provide wechat sdk for go
 
+fork github.com/silenceper/wechat
+
+
 使用Golang开发的微信SDK，简单、易用。
 
 以下是一个处理消息接收以及回复的例子：
@@ -27,7 +30,7 @@ Package wechat provide wechat sdk for go
 	server.Send()
 
 
-更多信息：https://github.com/silenceper/wechat
+更多信息：https://github.com/iphuket/wechat
 
 */
 package wechat
