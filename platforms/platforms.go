@@ -47,7 +47,7 @@ func ComponentAccessToken(ComponentAppID, AppSecret, cvt string) (*ResComponentA
 	}
 	if resComponentAccessToken.ErrMsg != "" {
 		err = fmt.Errorf("get access_token error : errcode=%v , errormsg=%v", resComponentAccessToken.ErrCode, resComponentAccessToken.ErrMsg)
-		return nil, err
+		return resComponentAccessToken, err
 	}
 	return resComponentAccessToken, nil
 }
@@ -67,7 +67,7 @@ func PreAuthCode(ComponentAppID, ComponentAccessToken string) (*ResPreAuthCode, 
 	}
 	if resPreAuthCode.ErrMsg != "" {
 		err = fmt.Errorf("get auth_code error : errcode=%v , errormsg=%v", resPreAuthCode.ErrCode, resPreAuthCode.ErrMsg)
-		return nil, err
+		return resPreAuthCode, err
 	}
 	return resPreAuthCode, nil
 }
@@ -112,7 +112,7 @@ func AuthBaseInfo(ComponentAppID, ComponentAccessToken, AuthCode string) (*ResAu
 	}
 	if resAuthInfo.ErrMsg != "" {
 		err = fmt.Errorf("get auth_code error : errcode=%v , errormsg=%v", resAuthInfo.ErrCode, resAuthInfo.ErrMsg)
-		return nil, err
+		return resAuthInfo, err
 	}
 	return resAuthInfo, nil
 }
@@ -139,7 +139,7 @@ func RefresAuthorizerAccessToken(ComponentAppID, ComponentAccessToken, Authorize
 	}
 	if resRefresAuthorizerAccessToken.ErrMsg != "" {
 		err = fmt.Errorf("get auth_code error : errcode=%v , errormsg=%v", resRefresAuthorizerAccessToken.ErrCode, resRefresAuthorizerAccessToken.ErrMsg)
-		return nil, err
+		return resRefresAuthorizerAccessToken, err
 	}
 	return resRefresAuthorizerAccessToken, nil
 }
@@ -186,7 +186,7 @@ func AuthorizerInfo(ComponentAppID, ComponentAccessToken, AuthorizerAppID string
 	}
 	if resAuthorizerInfo.ErrMsg != "" {
 		err = fmt.Errorf("get auth_code error : errcode=%v , errormsg=%v", resAuthorizerInfo.ErrCode, resAuthorizerInfo.ErrMsg)
-		return nil, err
+		return resAuthorizerInfo, err
 	}
 	return resAuthorizerInfo, nil
 }
