@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/iphuket/gowc/config"
 	"github.com/iphuket/wechat/util"
 )
 
@@ -35,19 +36,28 @@ type ResPreAuthCode struct {
 
 // ComponentAccessToken // 获取第三方平台 component_access_token
 func ComponentAccessToken(ComponentAppID, AppSecret, cvt string) (*ResComponentAccessToken, error) {
+	var ca = new(config.Cache)
+
 	// 获取第三方平台 component_access_token
 	body, err := util.PostJSON(ComponentTokenURL, map[string]string{"component_appid": ComponentAppID, "component_appsecret": AppSecret, "component_verify_ticket": cvt})
 	if err != nil {
+		fmt.Println(err)
 		return nil, err
 	}
 	resComponentAccessToken := new(ResComponentAccessToken)
 	err = json.Unmarshal(body, &resComponentAccessToken)
 	if err != nil {
+		fmt.Println(err)
 		return nil, err
 	}
 	if resComponentAccessToken.ErrMsg != "" {
 		err = fmt.Errorf("get access_token error : errcode=%v , errormsg=%v", resComponentAccessToken.ErrCode, resComponentAccessToken.ErrMsg)
 		return resComponentAccessToken, err
+	}
+	err = ca.Set("ComponentAccessToken", resComponentAccessToken.ComponentAccessToken)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
 	}
 	return resComponentAccessToken, nil
 }

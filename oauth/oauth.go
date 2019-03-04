@@ -122,7 +122,7 @@ type UserInfo struct {
 	util.CommonError
 
 	OpenID     string   `json:"openid"`
-	Nickname   string   `json:"nickname"`
+	NickName   string   `json:"nickname"`
 	Sex        int32    `json:"sex"`
 	Province   string   `json:"province"`
 	City       string   `json:"city"`
